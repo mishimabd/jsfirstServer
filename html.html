@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/info/get" method="GET">
+        <input type="summit" value="GET">
+    </form>
+    <form action="/info/add" method="post">
+        <label for="add">Add:</label>
+        <input type="text" name="add" id="add">
+        <input type="submit" value="Add">
+    </form>
+    <form action="/info/delete" method="post">
+        <label for="delete">Delete:</label>
+        <input type="text" name="delete" id="delete">
+        <input type="submit" value="Delete">
+    </form>
+    <form action="/info/update" method="post">
+        <label for="oldValue">Old Value:</label>
+        <input type="text" name="oldValue" id="oldValue">
+        <label for="newValue">Update:</label>
+        <input type="text" name="newValue" id="newValue">
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
