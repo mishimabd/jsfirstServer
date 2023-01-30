@@ -68,6 +68,18 @@ app.get('/info/get', (req, res)=>{
   }
 })
 
+app.post('/info/add', (req, res)=>{
+  try {
+    pool.connect(async (error, client, release) => {
+        let response = await client.query(`INSERT INTO courses VALUES {'${req.body.add}'}`);
+        release();
+        res.redirect('/info/get');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 app.listen(port, (
     console.log(`Server started on port ${port}`)
 ))
