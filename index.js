@@ -33,23 +33,24 @@ app.get('/', (req, res)=>{
   </head>
   <body>
       <form action="/info/get" method="GET">
-          <input type="summit" value="GET">
+          <input type="submit" value="GET">
       </form>
-      <form action="/info/add" method="post">
+      <form action="/info/add" method="post" >
           <label for="add">Add:</label>
-          <input type="text" name="add" id="add">
+          <input type="text" name="add" id="add" placeholder="Name">
+          <input type="text" name="addlevel" id="addlevel" placeholder="Difficulty">
           <input type="submit" value="Add">
       </form>
       <form action="/info/delete" method="post">
           <label for="delete">Delete:</label>
-          <input type="text" name="delete" id="delete">
+          <input type="text" name="delete" id="delete" placeholder="Id">
           <input type="submit" value="Delete">
       </form>
       <form action="/info/update" method="post">
-          <label for="oldValue">Old Value:</label>
-          <input type="text" name="oldValue" id="oldValue">
+          <label for="oldValue">Id of course:</label>
+          <input type="text" name="oldValue" id="oldValue" placeholder="Id">
           <label for="newValue">Update:</label>
-          <input type="text" name="newValue" id="newValue">
+          <input type="text" name="newValue" id="newValue" placeholder="Name">
           <input type="submit" value="Update">
       </form>
   </body>
@@ -59,7 +60,7 @@ app.get('/', (req, res)=>{
 app.get('/info/get', (req, res)=>{
   try {
     pool.connect(async (error, client, release) => {
-        let response = await client.query(`SELECT * FROM users`);
+        let response = await client.query(`SELECT * FROM courses`);
         release();
         res.json(response.rows);
     });
@@ -71,7 +72,7 @@ app.get('/info/get', (req, res)=>{
 app.post('/info/add', (req, res)=>{
   try {
     pool.connect(async (error, client, release) => {
-        let response = await client.query(`INSERT INTO courses VALUES {'${req.body.add}'}`);
+        let response = await client.query(`INSERT INTO courses(name, level) VALUES ('${req.body.add}','${req.body.addlevel}')`);
         release();
         res.redirect('/info/get');
     });
@@ -79,6 +80,32 @@ app.post('/info/add', (req, res)=>{
     console.log(error);
   }
 })
+
+
+app.post('/info/delete', (req, res)=>{
+  try {
+    pool.connect(async (error, client, release) => {
+        let response = await client.query(`DELETE FROM courses WHERE id  = '${req.body.delete}'`);
+        release();
+        res.redirect('/info/get');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
+app.post('/info/update', (req, res)=>{
+  try {
+    pool.connect(async (error, client, release) => {
+        let response = await client.query(`UPDATE courses SET name = '${req.body.newValue}' WHERE id = '${req.body.oldValue}'`);
+        release();
+        res.redirect('/info/get');
+    });
+  } catch (error) {
+    console.log(error);
+  }
+})
+
 
 app.listen(port, (
     console.log(`Server started on port ${port}`)
