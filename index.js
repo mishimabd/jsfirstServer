@@ -2,9 +2,14 @@ const http = require('http');
 const express = require('express');
 const morgan = require('morgan');
 const {Pool} = require('pg');
+const {MongoClient} = require('mongodb')
 const { release } = require('os');
 const { log } = require('console');
 require('dotenv').config;
+
+const client = new MongoClient('mongodb://localhost:27017/')
+
+client.connect();
 
 let pool = new Pool({
   user: 'postgres',
@@ -32,6 +37,9 @@ app.get('/', (req, res)=>{
       <title>Document</title>
   </head>
   <body>
+  <form action="/info/videos" method="GET">
+          <input type="submit" value="VIDEOS">
+      </form>
       <form action="/info/get" method="GET">
           <input type="submit" value="GET">
       </form>
@@ -67,6 +75,17 @@ app.get('/info/get', (req, res)=>{
   } catch (error) {
     console.log(error);
   }
+})
+
+app.get('/info/videos', (res, req)=> {
+ client.connect(err => {
+  const db = client.db('admin');
+  const collection = db.collection('hello');
+  collection.find({}).toArray(function(err, data) {
+    console.log(data);
+    client.close();
+  });
+ })
 })
 
 app.post('/info/add', (req, res)=>{
