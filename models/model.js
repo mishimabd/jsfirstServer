@@ -3,7 +3,6 @@
 var mongoose=require('mongoose');
  
 var DataSchema = new mongoose.Schema({
-    Id:Number,
     Name:String,
   });
  

@@ -18,13 +18,17 @@ app.get('/', Postgres.main)
 
 app.get('/info/get', Postgres.infoGet)
 
-app.get('/info/videos', MongoDB.videos)
-
 app.post('/info/add', Postgres.infoAdd)
 
 app.post('/info/delete', Postgres.infoDelete)
 
 app.post('/info/update', Postgres.infoUpdate)
+
+app.get('/videos', MongoDB.videos)
+
+app.post('/videos/add', MongoDB.addVideos)
+
+app.post('/videos/delete', MongoDB.deleteVideos)
 
 app.listen(port, (
   console.log(`Server started on port ${process.env.PORT}!`)
