@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-const { MongoClient, default: mongoose } = require('mongoose')
+const { default: mongoose } = require('mongoose')
 require('dotenv').config();
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGOOSE_URL).then(() => console.log('Connected successfully to MongoDB database!')).catch((error) => console.log(error));
@@ -29,6 +29,8 @@ app.get('/videos', MongoDB.videos)
 app.post('/videos/add', MongoDB.addVideos)
 
 app.post('/videos/delete', MongoDB.deleteVideos)
+
+app.post('/videos/update', MongoDB.updateVideos)
 
 app.listen(port, (
   console.log(`Server started on port ${process.env.PORT}!`)

@@ -26,14 +26,26 @@ exports.addVideos = function (req, res) {
     });
 }
 
-exports.deleteVideos = function (res, req) {
-    DataModel.findByIdAndDelete(req.body.docdelete,
+exports.deleteVideos = function (req, res) {
+    DataModel.remove({ Name: req.body.docdel },
         function (err, data) {
             if (err) {
                 console.log(err);
             }
             else {
                 res.redirect('/videos');
+            }
+        });
+}
+
+exports.updateVideos = function(req, res) {
+    DataModel.findOneAndUpdate(req.body.olddoc,
+        { Name: req.body.newdoc }, function (err, data) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/videos')
             }
         });
 }

@@ -39,9 +39,16 @@
             <input type="submit" value="Add Video">
         </form>
         <form action="/videos/delete" method="post">
-            <label for="deleteMongo">Delete:</label>
-            <input type="text" name="docdelete" id="docdelete" placeholder="Name">
+            <label for="delete">Delete:</label>
+            <input type="text" name="docdel" id="docdel" placeholder="Name">
             <input type="submit" value="Delete">
+        </form>
+        <form action="/videos/update" method="post">
+            <label for="olddoc">Id of course:</label>
+            <input type="text" name="olddoc" id="olddoc" placeholder="Name">
+            <label for="newdoc">Update:</label>
+            <input type="text" name="newdoc" id="newdoc" placeholder="New Name">
+            <input type="submit" value="Update">
         </form>
     </body>
     </html> 
