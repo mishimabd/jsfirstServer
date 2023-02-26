@@ -5,8 +5,8 @@ const { Pool } = require('pg');
 let pool = new Pool({
     user: 'postgres',
     host: 'localhost',
-    database: 'qadam',
-    password: '200320052010meir',
+    database: 'nodejs',
+    password: '200320052010',
     port: 5432,
   });
   
@@ -30,7 +30,7 @@ exports.main = function (req, res) {
 exports.infoAdd = function (req, res) {
     try {
       pool.connect(async (error, client, release) => {
-        let response = await client.query(`INSERT INTO courses(name, level) VALUES ('${req.body.add}','${req.body.addlevel}')`);
+        let response = await client.query(`INSERT INTO courses(name, difficulty) VALUES ('${req.body.add}','${req.body.addlevel}')`);
         release();
         res.redirect('/info/get');
       });
