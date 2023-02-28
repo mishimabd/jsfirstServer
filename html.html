@@ -1,13 +1,14 @@
 <!DOCTYPE html>
     <html lang="en">
     <head>
+        <script src="https://unpkg.com/sv443-joke-api@0.0.8/web/index.js"></script>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Admin Page</title>
     </head>
     <body>
-        <h4>Postgres</h4>
+        <h4>Postgres CRUD System</h4>
         <form action="/info/get" method="GET">
             <input type="submit" value="GET">
         </form>
@@ -29,7 +30,7 @@
             <input type="text" name="newValue" id="newValue" placeholder="Name">
             <input type="submit" value="Update">
         </form>
-        <h4>MongoDB</h4>
+        <h4>MongoDB CRUD System</h4>
         <form action="videos" method="GET">
             <input type="submit" value="GET">
         </form>
@@ -49,6 +50,15 @@
             <label for="newdoc">Update:</label>
             <input type="text" name="newdoc" id="newdoc" placeholder="New Name">
             <input type="submit" value="Update">
+        </form>
+        <h4>Jokes with API (Not working for now)</h4>
+            <div id="joke-container">
+                <h6 id="joke--text">Time flies like an arrow. Fruit flies like a banana. Something funny!</h6>
+            </div>
+        <h4>Upload Your Image To Save Locally</h4>
+        <form action="/upload" method="POST" enctype="multipart/form-data"> 
+            <input type="file" name="image">
+            <input type="submit">
         </form>
     </body>
     </html> 
