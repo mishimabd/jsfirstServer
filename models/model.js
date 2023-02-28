@@ -1,5 +1,3 @@
-
-
 var mongoose=require('mongoose');
  
 var DataSchema = new mongoose.Schema({
@@ -8,3 +6,4 @@ var DataSchema = new mongoose.Schema({
  
 module.exports = mongoose.model(
     'data', DataSchema, 'Data');
+
