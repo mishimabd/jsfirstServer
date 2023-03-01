@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGOOSE_URL).then(() => console.log('Connected suc
 var Postgres = require('./routes/postgreRoutes')
 var MongoDB = require('./routes/mongoDbRoutes')
 var Image = require('./routes/leftFunc')
+var Quran = require('./routes/quranRoute')
 const app = express()
 const port = 3000;
 
@@ -28,7 +29,7 @@ app.use(express.json())
 
 app.get('/', Postgres.main)
 
-app.post('/upload', upload.single("image"), Image.upload)
+app.post('/upload', upload.single("image"), Image.upload  )
 
 app.get('/info/get', Postgres.infoGet)
 
@@ -45,6 +46,8 @@ app.post('/videos/add', MongoDB.addVideos)
 app.post('/videos/delete', MongoDB.deleteVideos)
 
 app.post('/videos/update', MongoDB.updateVideos)
+
+app.get('/quran/', Quran.getAyath)
 
 app.listen(port, (
   console.log(`Server started on port ${process.env.PORT}!`)
