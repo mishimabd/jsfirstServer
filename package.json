@@ -12,6 +12,10 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "test":"jest"
+  },
+  "devDependencies": {
+    "jest": "^29.4.3"
   }
 }

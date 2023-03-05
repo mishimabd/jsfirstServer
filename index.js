@@ -9,6 +9,7 @@ const storage = multer.diskStorage({
     cb(null, Date.now() + path.extname(file.originalname))
   }
 })
+const Pages = require('./JavaPages')
 const upload = multer({storage: storage})
 const express = require('express');
 const morgan = require('morgan');
@@ -27,7 +28,15 @@ app.use(morgan('common'))
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 
-app.get('/', Postgres.main)
+app.get('/', Pages.main)
+
+app.get('/postgres', Pages.postgres)
+
+app.get('/mongodb', Pages.mongodb)
+
+app.get('/imageUpload', Pages.imageUpload)
+
+app.get('/ayah', Pages.ayah)
 
 app.post('/upload', upload.single("image"), Image.upload  )
 
@@ -47,9 +56,8 @@ app.post('/videos/delete', MongoDB.deleteVideos)
 
 app.post('/videos/update', MongoDB.updateVideos)
 
-app.get('/quran/', Quran.getAyath)
+app.get('/ayah/get', Quran.getAyath)
 
 app.listen(port, (
   console.log(`Server started on port ${process.env.PORT}!`)
 ))
-

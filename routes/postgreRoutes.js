@@ -24,7 +24,7 @@ exports.infoGet = function (req, res) {
   }
 
 exports.main = function (req, res) {
-  res.sendFile(path.join(__dirname,'..','html.html'));
+  res.sendFile(path.join(__dirname,'..','main.html'));
   }
 
 exports.infoAdd = function (req, res) {

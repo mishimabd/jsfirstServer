@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>MongoDB CRUD System</h4>
+    <form action="videos" method="GET">
+        <input type="submit" value="GET">
+    </form>
+    <form action="/videos/add" method="post">
+        <label for="add">Add:</label>
+        <input type="text" name="doc" id="doc" placeholder="Name">
+        <input type="submit" value="Add Video">
+    </form>
+    <form action="/videos/delete" method="post">
+        <label for="delete">Delete:</label>
+        <input type="text" name="docdel" id="docdel" placeholder="Name">
+        <input type="submit" value="Delete">
+    </form>
+    <form action="/videos/update" method="post">
+        <label for="olddoc">Id of course:</label>
+        <input type="text" name="olddoc" id="olddoc" placeholder="Name">
+        <label for="newdoc">Update:</label>
+        <input type="text" name="newdoc" id="newdoc" placeholder="New Name">
+        <input type="submit" value="Update">
+    </form>
+</body>
+</html>
